@@ -34,6 +34,23 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+// Concurrency additions. (Parallel Stream)
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.*;
+import java.util.Optional;
+import java.util.OptionalInt;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ForkJoinPool;
+
+
 /**
  * Jama = Java Matrix class.
  * <P>
@@ -99,7 +116,7 @@ public class Matrix
    * @serial column dimension.
    */
   protected int m, n;
-
+  
   /** 
    * Construct an m-by-n matrix of zeros. 
    * @param m    Number of rows.
@@ -581,11 +598,24 @@ public class Matrix
   public Matrix transpose() {
     Matrix X = new Matrix(n,m);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[j][i] = A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[j][i] = A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -650,11 +680,24 @@ public class Matrix
   public Matrix uminus() {
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = -A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = -A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -667,11 +710,24 @@ public class Matrix
     checkMatrixDimensions(B);
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] + B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = A[i][j] + B.A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -682,11 +738,24 @@ public class Matrix
    */
   public Matrix plusEquals(Matrix B) {
     checkMatrixDimensions(B);
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            A[i][j] = A[i][j] + B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         A[i][j] = A[i][j] + B.A[i][j];
       }
-    }
+    }*/
     return this;
   }
 
@@ -699,11 +768,24 @@ public class Matrix
     checkMatrixDimensions(B);
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] - B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = A[i][j] - B.A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -714,11 +796,24 @@ public class Matrix
    */
   public Matrix minusEquals(Matrix B) {
     checkMatrixDimensions(B);
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            A[i][j] = A[i][j] - B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         A[i][j] = A[i][j] - B.A[i][j];
       }
-    }
+    }*/
     return this;
   }
 
@@ -731,11 +826,24 @@ public class Matrix
     checkMatrixDimensions(B);
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] * B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = A[i][j] * B.A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -746,11 +854,24 @@ public class Matrix
    */
   public Matrix arrayTimesEquals(Matrix B) {
     checkMatrixDimensions(B);
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            A[i][j] = A[i][j] * B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         A[i][j] = A[i][j] * B.A[i][j];
       }
-    }
+    }*/
     return this;
   }
 
@@ -763,11 +884,24 @@ public class Matrix
     checkMatrixDimensions(B);
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] / B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = A[i][j] / B.A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -778,11 +912,24 @@ public class Matrix
    */
   public Matrix arrayRightDivideEquals(Matrix B) {
     checkMatrixDimensions(B);
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            A[i][j] = A[i][j] / B.A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         A[i][j] = A[i][j] / B.A[i][j];
       }
-    }
+    }*/
     return this;
   }
 
@@ -795,11 +942,24 @@ public class Matrix
     checkMatrixDimensions(B);
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = B.A[i][j] / A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = B.A[i][j] / A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -810,11 +970,24 @@ public class Matrix
    */
   public Matrix arrayLeftDivideEquals(Matrix B) {
     checkMatrixDimensions(B);
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            A[i][j] = B.A[i][j] / A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         A[i][j] = B.A[i][j] / A[i][j];
       }
-    }
+    }*/
     return this;
   }
 
@@ -826,11 +999,24 @@ public class Matrix
   public Matrix times(double s) {
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            C[i][j] = s*A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         C[i][j] = s*A[i][j];
       }
-    }
+    }*/
     return X;
   }
 
@@ -840,11 +1026,24 @@ public class Matrix
    * @return     replace A by s*A
    */
   public Matrix timesEquals(double s) {
-    for (int i = 0; i < m; i++) {
+
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, m)
+        .parallel()
+        .forEach(i -> {
+          for (int j = 0; j < n; j++) {
+            A[i][j] = s*A[i][j];
+          }
+        });
+    });
+
+    /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
         A[i][j] = s*A[i][j];
       }
-    }
+    }*/
     return this;
   }
 
@@ -861,19 +1060,41 @@ public class Matrix
     Matrix X = new Matrix(m,B.n);
     double[][] C = X.getArray();
     double[] Bcolj = new double[n];
-    for (int j = 0; j < B.n; j++) {
-      for (int k = 0; k < n; k++) {
-        Bcolj[k] = B.A[k][j];
-      }
-      for (int i = 0; i < m; i++) {
-        double[] Arowi = A[i];
-        double s = 0;
-        for (int k = 0; k < n; k++) {
-          s += Arowi[k]*Bcolj[k];
-        }
-        C[i][j] = s;
-      }
-    }
+    //for (int j = 0; j < B.n; j++) {
+    // We have to use the range() generator here so that the Java compiler 
+    // can prove to itself that the value of j will not change later on.
+    ForkJoinPool fjp = new ForkJoinPool();
+
+    fjp.submit(() -> {
+      IntStream.range(0, B.n)
+        .parallel()
+        .forEach(j -> {
+          for (int k = 0; k < n; k++) {
+            Bcolj[k] = B.A[k][j];
+          }
+
+          IntStream.range(0, m)
+            .forEach(i -> {
+              double[] Arowi = A[i];
+              double s = 0;
+
+              for (int k = 0; k < n; k++) {
+                s += Arowi[k]*Bcolj[k];
+              }
+              C[i][j] = s;
+            });
+
+          /*for (int i = 0; i < m; i++) {
+            double[] Arowi = A[i];
+            double s = 0;
+            
+            for (int k = 0; k < n; k++) {
+              s += Arowi[k]*Bcolj[k];
+            }
+            C[i][j] = s;
+          }*/
+      });
+    });
     return X;
   }
 
