@@ -66,7 +66,7 @@
       includeantruntime="false"
       debug="${debug}"
       deprecation="${deprecation}"
-      source="1.5" target="1.5">
+      source="1.8" target="1.8">
 
       <classpath refid="project.class.path" /> 
     </javac>
@@ -149,7 +149,7 @@
             debug="${debug}"
             includeantruntime="false"
             deprecation="${deprecation}"
-            source="1.5" target="1.5">
+            source="1.8" target="1.8">
        <classpath refid="project.class.path" /> 
      </javac>
      <copy todir="${build}/testcases" >
