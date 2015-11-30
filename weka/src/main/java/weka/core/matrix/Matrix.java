@@ -601,7 +601,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -610,6 +610,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -683,7 +685,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -692,6 +694,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -713,7 +717,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -722,6 +726,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -741,7 +747,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -750,6 +756,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -771,7 +779,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -780,6 +788,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -799,7 +809,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -808,6 +818,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -829,7 +841,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -838,6 +850,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -857,7 +871,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -866,6 +880,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -887,7 +903,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -896,6 +912,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -915,7 +933,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -924,6 +942,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -945,7 +965,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -954,6 +974,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -973,7 +995,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -982,6 +1004,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -1002,7 +1026,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -1011,6 +1035,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -1029,7 +1055,7 @@ public class Matrix
 
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, m)
         .parallel()
         .forEach(i -> {
@@ -1038,6 +1064,8 @@ public class Matrix
           }
         });
     });
+
+    fjp.shutdown();
 
     /*for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
@@ -1065,7 +1093,7 @@ public class Matrix
     // can prove to itself that the value of j will not change later on.
     ForkJoinPool fjp = new ForkJoinPool();
 
-    fjp.submit(() -> {
+    fjp.execute(() -> {
       IntStream.range(0, B.n)
         .parallel()
         .forEach(j -> {
@@ -1095,6 +1123,9 @@ public class Matrix
           }*/
       });
     });
+
+    fjp.shutdown();
+
     return X;
   }
 
