@@ -116,7 +116,20 @@ public class Matrix
    * @serial column dimension.
    */
   protected int m, n;
-  
+
+  /**
+   * Number of threads to spawn during matrix ops.
+   * @serial number of threads.
+   */
+  public static int num_threads = -1;
+
+  private ForkJoinPool getForkJoinPool() {
+    if(num_threads < 0) {
+      num_threads = Runtime.getRuntime().availableProcessors();
+    }
+    return new ForkJoinPool(num_threads);
+  }
+
   /** 
    * Construct an m-by-n matrix of zeros. 
    * @param m    Number of rows.
@@ -599,7 +612,7 @@ public class Matrix
     Matrix X = new Matrix(n,m);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -683,7 +696,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -715,7 +728,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -745,7 +758,7 @@ public class Matrix
   public Matrix plusEquals(Matrix B) {
     checkMatrixDimensions(B);
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -777,7 +790,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -807,7 +820,7 @@ public class Matrix
   public Matrix minusEquals(Matrix B) {
     checkMatrixDimensions(B);
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -839,7 +852,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -869,7 +882,7 @@ public class Matrix
   public Matrix arrayTimesEquals(Matrix B) {
     checkMatrixDimensions(B);
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -901,7 +914,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -931,7 +944,7 @@ public class Matrix
   public Matrix arrayRightDivideEquals(Matrix B) {
     checkMatrixDimensions(B);
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -963,7 +976,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -993,7 +1006,7 @@ public class Matrix
   public Matrix arrayLeftDivideEquals(Matrix B) {
     checkMatrixDimensions(B);
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -1024,7 +1037,7 @@ public class Matrix
     Matrix X = new Matrix(m,n);
     double[][] C = X.getArray();
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -1053,7 +1066,7 @@ public class Matrix
    */
   public Matrix timesEquals(double s) {
 
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, m)
@@ -1091,7 +1104,7 @@ public class Matrix
     //for (int j = 0; j < B.n; j++) {
     // We have to use the range() generator here so that the Java compiler 
     // can prove to itself that the value of j will not change later on.
-    ForkJoinPool fjp = new ForkJoinPool();
+    ForkJoinPool fjp = this.getForkJoinPool();
 
     fjp.execute(() -> {
       IntStream.range(0, B.n)
