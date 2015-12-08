@@ -10,7 +10,7 @@ Issued under the [GNU General Public License](http://www.gnu.org/licenses/gpl.ht
 
 This was written for USC-Columbia's CSCE 569 in Fall 2015, taught by Dr. Jianjun Hu.
 
-[Weka](http://www.cs.waikato.ac.nz/ml/index.html) is a popular Java machine-learning library aimed towards data-mining applications. We have configured the library to run on Java 8 and parallelized its matrix operations using three different methods (see below).
+[Weka](http://www.cs.waikato.ac.nz/ml/index.html) is a widely used Java machine-learning library aimed towards data-mining applications. We have configured the library to run on Java 8 and parallelized its matrix operations using three different methods (see below).
 
 Anyone is welcome to fork and build upon this project. Weka is a large library, so there is plenty that can be parallelized beyond what we have done.
 
