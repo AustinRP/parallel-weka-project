@@ -1,16 +1,26 @@
-Weka Project for CSCE 569
+Weka Project for CSCE 569 - Parallel Computing
 -------------------------
+University of South Carolina - Columbia
 
 By Philip Conrad, Austin Pahl, and Steve Rubin.
 
+Issued under the [GNU General Public License](http://www.gnu.org/licenses/gpl.html).
+
+### Introduction
+
+This is a project written for CSCE 569, Fall 2015, taught by Dr. Jianjun Hu.
+
+[Weka](http://www.cs.waikato.ac.nz/ml/index.html) is a popular Java machine-learning library aimed towards data-mining applications. We have configured the library to run on Java 8 and parallelized its matrix operations using three different methods (see below).
+
+Anyone is welcome to fork and build upon this project. Weka is a large library, so there is plenty that can be parallelized beyond what we have done.
 
 ### How things are parallelized
 
-We chose to try three different approaches for the sake of comparison:
+We include three approaches to parallelization:
 
  - Naive multi-threading.
- - "Smart" multi-threading. (Switches from sequential code to multi-threading when the data size is large enough.)
- - [JCuda][jcuda]-based GPU-acceleration.
+ - "Smart" multi-threading. Switches from sequential code to multi-threading when the data size is large enough.
+ - [JCuda](http://www.jcuda.org)-based GPU-acceleration. Requires a CUDA-enabled GPU and NVIDIA drivers with CUDA support and the CUDA toolkit.
 
 
 ### What is parallelized
