@@ -16,11 +16,10 @@ Anyone is welcome to fork and build upon this project. Weka is a large library, 
 
 ### How things are parallelized
 
-We include three approaches to parallelization:
+We include two approaches to parallelization:
 
  - Naive multi-threading.
  - "Smart" multi-threading. Switches from sequential code to multi-threading when the data size is large enough.
- - [JCuda](http://www.jcuda.org)-based GPU-acceleration. Requires a CUDA-enabled GPU and NVIDIA drivers with CUDA support and the CUDA toolkit.
 
 
 ### What is parallelized
@@ -60,9 +59,10 @@ To build the test suite, just run:
 ### How to benchmark the code
 
 Check out the `weka-benchmark` repo, and follow the instructions in the README.
-### please also take a look at out [benchmark repository](https://bitbucket.org/conradp/weka-benchmark)
+### please also take a look at out [benchmark repository][benchmark]
 
    [weka]: http://www.cs.waikato.ac.nz/ml/index.html
    [gpl]: http://www.gnu.org/licenses/gpl.html
    [apache-ant]: http://ant.apache.org/
    [jcuda]: http://www.jcuda.org/
+   [benchmark]: https://github.com/AustinRP/weka-benchmark
