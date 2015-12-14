@@ -1,4 +1,4 @@
-Weka Project for CSCE 569 - Parallel Computing
+Parallel Weka Project for CSCE 569 - Parallel Computing
 -------------------------
 ### University of South Carolina - Columbia
 
