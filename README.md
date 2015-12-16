@@ -59,7 +59,7 @@ To build the test suite, just run:
 ### How to benchmark the code
 
 Check out the `weka-benchmark` repo, and follow the instructions in the README.
-### please also take a look at out [benchmark repository][benchmark]
+### please also take a look at our [benchmark repository][benchmark]
 
    [weka]: http://www.cs.waikato.ac.nz/ml/index.html
    [gpl]: http://www.gnu.org/licenses/gpl.html
